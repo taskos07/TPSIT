@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Genera Check Digit EAN</title>
+
+    <script type="text/javascript">
+        function crea_check() {
+            // Legge il valore inserito
+            let Codice = document.getElementById("parola1").value;
+
+            // Controlla che siano 12 cifre
+            if (Codice.length !== 12) {
+                alert("Inserisci esattamente 12 cifre!");
+                return;
+            }
+
+            let somma = 0;
+
+            // Somma delle cifre in posizione pari (indice dispari)
+            for (let i = 0; i < 12; i++) {
+                let cifra = Number(Codice.charAt(i));
+                if (isNaN(cifra)) {
+                    alert("Inserisci solo numeri!");
+                    return;
+                }
+
+                // Le posizioni pari (partendo da 0) si moltiplicano per 1, le dispari per 3
+                somma += (i % 2 === 0) ? cifra * 1 : cifra * 3;
+            }
+
+            // Calcolo check digit
+            let CheckDigit = (10 - (somma % 10)) % 10;
+            let EAN = Codice + CheckDigit;
+
+            // Mostra risultati
+            alert("CheckDigit: " + CheckDigit);
+            alert("EAN completo: " + EAN);
+
+            // Aggiorna campi
+            document.getElementById("check").value = CheckDigit;
+            document.getElementById("eancompleto").innerHTML = "EAN completo: " + EAN;
+        }
+    </script>
+</head>
+
+<body bgcolor="#7fffd4">
+<p style="color: rgb(66, 46, 117);">
+    <b>Inserisci le prime 12 cifre del codice EAN:</b>
+</p>
+<input type="number" placeholder="accetta solo numeri" name="parola1" id="parola1" size="12">
+<br><br>
+
+<p style="color: rgb(66, 46, 117);">
+    <b>Check digit del codice EAN:</b>
+</p>
+<input type="number" name="check" id="check" size="1">
+<br><br>
+
+<p style="color: rgb(66, 46, 117);">
+    <b>Fai click sotto sul bottone per generare il CheckDigit:</b>
+</p>
+<input type="button" value="Genera CheckDigit" onclick="crea_check();">
+<br><br>
+
+<div id="eancompleto"></div>
+</body>
+</html>
