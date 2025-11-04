@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Convertitore Decimale Binario</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <script type="text/javascript">
+
+        function dec2bin() {
+            let numero = document.getElementById("decimale").value;
+
+            if (numero === "") {
+                alert("Inserisci un numero decimale");
+                return;
+            }
+
+            if (isNaN(numero)) {
+                alert("Inserisci solo numeri");
+                return;
+            }
+
+            let binario = Number(numero).toString(2);
+            document.getElementById("risultato1").value = binario;
+        }
+
+
+        function bin2dec() {
+            let binario = document.getElementById("binario").value;
+
+            if (binario === "") {
+                alert("Inserisci un numero binario");
+                return;
+            }
+
+
+            for (let i = 0; i < binario.length; i++) {
+                let c = binario.charAt(i);
+                if (c !== "0" && c !== "1") {
+                    alert("Un numero binario può contenere solo 0 e 1");
+                    return;
+                }
+            }
+
+            let decimale = parseInt(binario, 2);
+            document.getElementById("risultato2").value = decimale;
+        }
+    </script>
+</head>
+
+<body>
+<div class="container">
+    <h2>Convertitore Decimale Binario</h2>
+
+    <form>
+        <div class="box">
+            <h3>Da decimale a binario</h3>
+            <input type="number" id="decimale" placeholder="Inserisci numero decimale">
+            <button type="button" onclick="dec2bin()">Converti</button>
+            <input type="text" id="risultato1" placeholder="Risultato binario" readonly>
+        </div>
+
+        <div class="box">
+            <h3>Da binario a decimale</h3>
+            <input type="text" id="binario" placeholder="Inserisci numero binario">
+            <button type="button" onclick="bin2dec()">Converti</button>
+            <input type="text" id="risultato2" placeholder="Risultato decimale" readonly>
+        </div>
+
+        <input type="reset" value="Pulisci campi" class="pulisci">
+    </form>
+</div>
+</body>
+</html>
