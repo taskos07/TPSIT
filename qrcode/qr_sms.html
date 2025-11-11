@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Genera Codice QR</title>
+    <meta charset="UTF-8">
+    <title>QR Code</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
@@ -17,11 +18,14 @@
 
 
         var qrc = new QRCode(document.getElementById("qrcode"), {
-            text: "tel:3279974480",
+            text: "smsto:3713930939:ciao ciao",
             width: 200,
             height: 200,
             colorDark: "#000000"
         });
+
+
+
 
 
         document.getElementById("qrprint").addEventListener("click", function() {
@@ -53,4 +57,3 @@
 </script>
 </body>
 </html>
-
